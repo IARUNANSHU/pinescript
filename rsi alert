@@ -1,0 +1,21 @@
+//@version=5
+indicator("RSI ALERT")
+RSIPeriod = input(13)
+BuyAlertLevel = input(-10)
+SellAlertLevel = input(10)
+RSIHistoModify = input(1.5)
+hline(0, color=color.purple,linestyle=hline.style_dashed )
+hline(BuyAlertLevel, color=color.green, linestyle=hline.style_dashed)
+hline(SellAlertLevel, color=color.red, linestyle=hline.style_dashed)
+xPrice = close
+RSIMain = (ta.rsi(xPrice, RSIPeriod) - 50) * RSIHistoModify
+rsiHcolor = if(RSIMain >= 0) 
+    color.green
+else
+    color.red
+// pos =if(RSIMain > BuyAlertLevel, 1,
+// 	    if(RSIMain < SellAlertLevel, -1, nz(pos[1], 0))) 
+// barcolor(pos == -1 ? color.red: pos == 1 ? color.green : color.blue )        
+plot(RSIMain, color=color.blue, title="RSI HistoAlert")
+plot(RSIMain, color=rsiHcolor, title="Histogram", style = plot.style_histogram, linewidth  = 3)
+
