@@ -1,0 +1,18 @@
+//@version=5
+
+indicator("hlc", overlay = true)
+wc = request.security(syminfo.tickerid, "W", close[1], gaps = barmerge.gaps_off, lookahead= barmerge.lookahead_on)
+wh = request.security(syminfo.tickerid, "W", high[1], gaps= barmerge.gaps_off, lookahead= barmerge.lookahead_on)
+wl = request.security(syminfo.tickerid, "W", low[1], gaps = barmerge.gaps_off, lookahead= barmerge.lookahead_on)
+
+mc = request.security(syminfo.tickerid, "M", close[1], gaps = barmerge.gaps_off, lookahead= barmerge.lookahead_on)
+mh = request.security(syminfo.tickerid, "M", high[1], gaps= barmerge.gaps_off, lookahead= barmerge.lookahead_on)
+ml = request.security(syminfo.tickerid, "M", low[1], gaps = barmerge.gaps_off, lookahead= barmerge.lookahead_on)
+
+plot(wl,color = color.white,style = plot.style_circles)
+plot(wh,color = color.white,style = plot.style_circles)
+//plot(wc,color = color.white,style = plot.style_circles)
+
+plot(mh,color = color.white,style = plot.style_circles)
+plot(ml,color = color.white,style = plot.style_circles)
+//plot(mc,color = color.white,style = plot.style_circles)
